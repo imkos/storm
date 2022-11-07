@@ -2,18 +2,15 @@ package q_test
 
 import (
 	"fmt"
-	"log"
-
-	"time"
-
-	"os"
-
 	"io/ioutil"
+	"log"
+	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
-	"github.com/asdine/storm/v3"
-	"github.com/asdine/storm/v3/q"
+	"github.com/imkos/storm/v3"
+	"github.com/imkos/storm/v3/q"
 )
 
 func ExampleRe() {
@@ -59,7 +56,6 @@ func prepareDB() (string, *storm.DB) {
 			CreatedAt: time.Now(),
 		}
 		err := db.Save(&user)
-
 		if err != nil {
 			log.Fatal(err)
 		}

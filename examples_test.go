@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/asdine/storm/v3"
-	"github.com/asdine/storm/v3/codec/gob"
+	"github.com/imkos/storm/v3"
+	"github.com/imkos/storm/v3/codec/gob"
 	bolt "go.etcd.io/bbolt"
 )
 
@@ -40,7 +40,6 @@ func ExampleDB_Save() {
 	}
 
 	err := db.Save(&user)
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -67,7 +66,6 @@ func ExampleDB_One() {
 	var user User
 
 	err := db.One("Email", "john@provider.com", &user)
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -93,7 +91,6 @@ func ExampleDB_Find() {
 
 	var users []User
 	err := db.Find("Group", "staff", &users)
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -111,7 +108,6 @@ func ExampleDB_All() {
 
 	var users []User
 	err := db.All(&users)
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -129,7 +125,6 @@ func ExampleDB_AllByIndex() {
 
 	var users []User
 	err := db.AllByIndex("CreatedAt", &users)
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -147,7 +142,6 @@ func ExampleDB_Range() {
 
 	var users []User
 	err := db.Range("Age", 21, 22, &users)
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -165,7 +159,6 @@ func ExampleLimit() {
 
 	var users []User
 	err := db.All(&users, storm.Limit(2))
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -183,7 +176,6 @@ func ExampleSkip() {
 
 	var users []User
 	err := db.All(&users, storm.Skip(1))
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -227,7 +219,6 @@ func ExampleDB_DeleteStruct() {
 	var user User
 
 	err := db.One("ID", 1, &user)
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -248,7 +239,6 @@ func ExampleDB_Begin() {
 	var account1, account2 Account
 
 	tx, err := db.Begin(true)
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -315,7 +305,6 @@ func ExampleDB_From() {
 	workNotes := db.From("notes", "work")
 
 	err := privateNotes.Save(&Note{ID: "private1", Text: "This is some private text."})
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -379,7 +368,6 @@ func ExampleDB_Drop() {
 	var user User
 
 	err := db.One("Email", "john@provider.com", &user)
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -439,7 +427,6 @@ func ExampleNode_PrefixScan() {
 	fmt.Println("Bucket", nodes[2].Bucket()[1])
 
 	count, err := march.Count(&Note{})
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -447,10 +434,10 @@ func ExampleNode_PrefixScan() {
 	fmt.Println("Notes in March:", count)
 
 	// Output:
-	//Note buckets in 2016: 12
-	//Bucket 201603
-	//Bucket 201603
-	//Notes in March: 3
+	// Note buckets in 2016: 12
+	// Bucket 201603
+	// Bucket 201603
+	// Notes in March: 3
 
 }
 
@@ -484,7 +471,6 @@ func ExampleNode_RangeScan() {
 	fmt.Println("Note buckets in first half of 2014:", len(nodes))
 
 	notesCount, err := nodes[0].Count(&Note{})
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -529,7 +515,6 @@ func prepareDB() (string, *storm.DB) {
 			CreatedAt: time.Now(),
 		}
 		err := db.Save(&user)
-
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -539,7 +524,6 @@ func prepareDB() (string, *storm.DB) {
 		account := Account{Amount: 10000}
 
 		err := db.Save(&account)
-
 		if err != nil {
 			log.Fatal(err)
 		}

@@ -4,8 +4,9 @@ import (
 	"reflect"
 	"sort"
 	"time"
-	"github.com/asdine/storm/v3/index"
-	"github.com/asdine/storm/v3/q"
+
+	"github.com/imkos/storm/v3/index"
+	"github.com/imkos/storm/v3/q"
 	bolt "go.etcd.io/bbolt"
 )
 
@@ -274,7 +275,6 @@ func (s *sorter) Len() int {
 		return ssink.slice().Len()
 	}
 	return len(s.list)
-
 }
 
 func (s *sorter) Less(i, j int) bool {
